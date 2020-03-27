@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ExampleComponent Test HTML</title>
+
+    <script src="https://scopus-npm-test.s3.amazonaws.com/public-resources/deployed/pbj-scopus-monolith/pbj-scopus-monolith.js"></script>
+
+    <script type="application/javascript">
+      var ScopusUser = {
+        webUserId: "Test=Id",
+        firstName: "Test User",
+        lastName: "{currentUser.userInfo.lastName}",
+        email: "{currentUser.userInfo.email}",
+        accessTypeAA: "{currentUser.accessTypeAA}",
+        department: {
+          departmentId: "{currentUser.account.departmentId}",
+          departmentName: "{currentUser.account.departmentName}"
+        },
+        account: {
+          accountId: "{currentUser.account.accountId}",
+          accountName: "{currentUser.account.accountName}"
+        },
+        isIndividual: "true" === "{currentUser.individual}",
+        isSubscribed: "true" === "{currentUser.subscriber}",
+        pathChoiceExists: "true" === "{currentUser.pathChoiceExists}",
+        fenceIds: "{currentUser.fenceIds}",
+        fenceNames: "{currentUser.fenceNames}",
+        adminRoles: "{currentUser.primaryAdminRoles}",
+        userPreferences: "{currentUser.userPreferencesJson}"
+      };
+      var PlatformData = {
+        sessionId: "4CEB25FCDB6D4FF59DC09FA76D2A5047.wsnAw8kcdt7IPYLO0V48gA",
+        pageId: ""
+      };
+    </script>
+  </head>
+
+  <body>
+    <div id="platformAlertArea" aria-live="polite" aria-atomic="true"></div>
+    <sc-example-component></sc-example-component>
+  </body>
+</html>
