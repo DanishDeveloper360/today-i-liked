@@ -1,47 +1,51 @@
+import 'scopus-styleguide/build/main.bundle.js';
+
 export default class ScopusExampleComponent extends HTMLElement {
   connectedCallback() {
-    const countries = [
-      { id: 1, label: 'Afghanistan' },
-      { id: 2, label: 'Albania' },
-      { id: 3, label: 'Algeria' },
-      { id: 4, label: 'Angola' },
-      { id: 5, label: 'Armenia' },
-      { id: 6, label: 'Argentina' },
-      { id: 7, label: 'Congo' },
-      { id: 8, label: 'Croatia' },
-      { id: 9, label: 'France' },
-      { id: 10, label: 'Netherlands' },
-    ];
-
-    const element = this.querySelector('#autocomplete-example');
+    // Example of how to attach functions with an element selector
+    const element = this.querySelector('#example-component-autocomplete');
     element.onExactSearch = (query) => {
       alert(`Exact search done with query: ${query}`);
     };
     element.onUserTyping = (query) => {
-      const suggestions = countries.filter(
-        (country) => country.label.indexOf(query) !== -1
+      const countries = [
+        { id: 1, label: 'Afghanistan' },
+        { id: 2, label: 'Albania' },
+        { id: 3, label: 'Algeria' },
+        { id: 4, label: 'Angola' },
+        { id: 5, label: 'Armenia' },
+        { id: 6, label: 'Argentina' },
+        { id: 7, label: 'Congo' },
+        { id: 8, label: 'Croatia' },
+        { id: 9, label: 'France' },
+        { id: 10, label: 'Netherlands' },
+      ];
+
+      element.suggestions = countries.filter((country) =>
+        country.label.includes(query)
       );
-      element.suggestions = suggestions;
     };
     element.onSuggestionSelect = (suggestion) => {
       alert(`Suggestion ${suggestion.label} selected`);
     };
-  }
 
-  constructor() {
-    super();
-    let firstName = window.scopus.platform.user.identification.getIdentity()
-      .firstName;
-
-    const config = JSON.stringify({
+    element.config = {
       queryTresholdLength: 2,
       debounceTimeout: 500,
       placeholder: 'Filter a country',
       showClearIcon: true,
       showSearchIcon: true,
       small: true,
-    });
+    };
+  }
 
+  constructor() {
+    super();
+    let {
+      firstName,
+    } = window.scopus.platform.user.identification.getIdentity();
+
+    // Example of how to add a function to the template itself
     window.onClickIcon = (icon) => {
       alert(`clicked ${icon}`);
     };
@@ -56,8 +60,7 @@ export default class ScopusExampleComponent extends HTMLElement {
                 <p>Hello, ${firstName}!  Welcome to Scopus.</p>
                 <p class="text-meta--small">This is a full column based on a 24 column grid layout.</p>
                 <sc-autocomplete
-                  id="autocomplete-example"
-                  config='${config}'
+                  id="example-component-autocomplete"
                 ></sc-autocomplete>
               </div>
             </section>

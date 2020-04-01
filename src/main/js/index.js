@@ -1,4 +1,3 @@
-import 'scopus-styleguide/build/main.bundle.js';
 import ScopusExampleComponent from './ExampleComponent';
 import './ExampleComponent.css';
 
