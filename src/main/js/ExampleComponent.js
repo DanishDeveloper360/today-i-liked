@@ -1,108 +1,150 @@
-import 'scopus-styleguide/build/main.bundle.js';
+import 'components/dist/scopus-components';
+import 'stylesheet/dist/scopus-stylesheet';
+import ExampleComponentTemplate from './ExampleComponent.html';
 
 export default class ScopusExampleComponent extends HTMLElement {
-  connectedCallback() {
-    // Example of how to attach functions with an element selector
-    const element = this.querySelector('#example-component-autocomplete');
-    element.onExactSearch = (query) => {
-      alert(`Exact search done with query: ${query}`);
-    };
-    element.onUserTyping = (query) => {
-      const countries = [
-        { id: 1, label: 'Afghanistan' },
-        { id: 2, label: 'Albania' },
-        { id: 3, label: 'Algeria' },
-        { id: 4, label: 'Angola' },
-        { id: 5, label: 'Armenia' },
-        { id: 6, label: 'Argentina' },
-        { id: 7, label: 'Congo' },
-        { id: 8, label: 'Croatia' },
-        { id: 9, label: 'France' },
-        { id: 10, label: 'Netherlands' },
-      ];
-
-      element.suggestions = countries.filter((country) =>
-        country.label.includes(query)
-      );
-    };
-    element.onSuggestionSelect = (suggestion) => {
-      alert(`Suggestion ${suggestion.label} selected`);
-    };
-
-    element.config = {
-      queryTresholdLength: 2,
-      debounceTimeout: 500,
-      placeholder: 'Filter a country',
-      showClearIcon: true,
-      showSearchIcon: true,
-      small: true,
-    };
-  }
-
   constructor() {
     super();
-    let {
-      firstName,
-    } = window.scopus.platform.user.identification.getIdentity();
 
-    // Example of how to add a function to the template itself
-    window.onClickIcon = (icon) => {
-      alert(`clicked ${icon}`);
-    };
+    this._description = '';
+    this._icons = [];
+    this._countries = [];
+    this._config = {};
 
-    this.innerHTML = `
-      <div id='ScopusExampleComponent'>
-        <div class="container example-component-flex">
-          <div class="example-component-border padding-size-24">
-            <section class="row">
-              <div class="col-24">
-                <h1>Scopus ExampleComponent Example</h1>
-                <p>Hello, ${firstName}!  Welcome to Scopus.</p>
-                <p class="text-meta--small">This is a full column based on a 24 column grid layout.</p>
-                <sc-autocomplete
-                  id="example-component-autocomplete"
-                ></sc-autocomplete>
-              </div>
-            </section>
-            <section class="margin-size-24-t">
-              <div class="row">
-                <h2 class="col">Icons</h2>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="apple" onclick="onClickIcon('apple')"></sc-icon>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="3d-radiology" onclick="onClickIcon('3d-radiology')"></sc-icon>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="cooking-tools" onclick="onClickIcon('cooking-tools')"></sc-icon>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="couple-of-people" onclick="onClickIcon('couple-of-people')"></sc-icon>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="delivery-van" onclick="onClickIcon('delivery-van')"></sc-icon>
-                  </div>
-                </div>
-                <div class="col-12 col-md-4">
-                  <div class="box">
-                    <sc-icon icon-name="descend" onclick="onClickIcon('descend')"></sc-icon>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>`;
+    this._initialized = false;
+  }
+
+  connectedCallback() {
+    this.innerHTML = ExampleComponentTemplate;
+
+    // templates
+    this.$iconButtonTemplate = this.querySelector(
+      '#sc-example-component-icon__button'
+    );
+
+    // elements
+    this.$description = this.querySelector('#sc-example-component__title');
+    this.$iconBar = this.querySelector('#sc-example-component__icon-bar');
+    this.$autocomplete = this.querySelector(
+      '#sc-example-component__autocomplete'
+    );
+
+    // ready to render
+    this._initialized = true;
+
+    // render methods
+    this._renderDescription();
+    this._renderIcons();
+    this._setupAutocomplete();
+  }
+
+  static get observedAttributes() {
+    return ['description', 'icons', 'countries', 'config'];
+  }
+
+  attributeChangedCallback(attributeName, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      switch (attributeName) {
+        case 'description':
+          this._description = newValue;
+          this._renderDescription();
+          break;
+        case 'icons':
+          this._icons = JSON.parse(newValue);
+          this._renderIcons();
+          break;
+        case 'countries':
+          this._countries = JSON.parse(newValue);
+          this._setupAutocomplete();
+          break;
+        case 'config':
+          this._config = JSON.parse(newValue);
+          this._setupAutocomplete();
+          break;
+      }
+    }
+  }
+
+  disconnectedCallback() {
+    this.$iconElements.forEach((icon) =>
+      icon.removeEventListener('click', this._iconOnClick)
+    );
+  }
+
+  // Title Functionality
+  _renderDescription() {
+    if (this._initialized) this.$description.innerHTML = this._description;
+  }
+
+  // // Icon Functionality
+  _renderIcons() {
+    if (this._initialized) {
+      this.$iconElements = this._icons.map((icon) => {
+        const $iconElement = document.importNode(
+          this.$iconButtonTemplate.content,
+          true
+        );
+
+        const $iconSVG = $iconElement.querySelector('sc-icon');
+        $iconSVG.setAttribute('icon-name', icon);
+        $iconSVG.addEventListener('click', this._iconOnClick);
+
+        this.$iconBar.appendChild($iconElement);
+        return $iconElement;
+      });
+    }
+  }
+
+  _iconOnClick(event) {
+    event.preventDefault();
+    alert(`clicked ${this.getAttribute('icon-name')}`);
+  }
+
+  // // Autocomplete Functionality
+  _setupAutocomplete() {
+    if (this._initialized) {
+      // Example of how to attach functions with an element selector
+      this.$autocomplete.onExactSearch = (query) => {
+        alert(`Exact search done with query: ${query}`);
+      };
+      this.$autocomplete.onUserTyping = (query) => {
+        this.$autocomplete.suggestions = this._countries.filter((country) =>
+          country.label.includes(query)
+        );
+      };
+      this.$autocomplete.onSuggestionSelect = (suggestion) => {
+        alert(`Suggestion ${suggestion.label} selected`);
+      };
+
+      this.$autocomplete.config = this._config;
+    }
+  }
+
+  get description() {
+    return this._description;
+  }
+  set description(value) {
+    this.setAttribute('description', value);
+  }
+
+  get icons() {
+    return this._icons;
+  }
+  set icons(value) {
+    this.setAttribute('icons', JSON.stringify(value));
+  }
+
+  get countries() {
+    return this._countries;
+  }
+  set countries(value) {
+    this.setAttribute('countries', JSON.stringify(value));
+  }
+
+  get config() {
+    return this._config;
+  }
+  set config(value) {
+    this.setAttribute('config', JSON.stringify(value));
   }
 }
