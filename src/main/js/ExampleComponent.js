@@ -19,14 +19,14 @@ export default class ScopusExampleComponent extends HTMLElement {
 
     // templates
     this.$iconButtonTemplate = this.querySelector(
-      '#sc-example-component-icon__button'
+      '#sc-ExampleComponent--iconButton'
     );
 
     // elements
-    this.$description = this.querySelector('#sc-example-component__title');
-    this.$iconBar = this.querySelector('#sc-example-component__icon-bar');
+    this.$description = this.querySelector('#sc-ExampleComponent--title');
+    this.$iconBar = this.querySelector('#sc-ExampleComponent--iconBar');
     this.$autocomplete = this.querySelector(
-      '#sc-example-component__autocomplete'
+      '#sc-ExampleComponent--autocomplete'
     );
 
     // ready to render

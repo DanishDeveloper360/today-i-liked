@@ -10,7 +10,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|scopus-styleguide/,
         enforce: 'pre',
         loader: 'eslint-loader',
       },

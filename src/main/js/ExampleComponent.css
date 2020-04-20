@@ -1,10 +1,6 @@
-.sc-example-component-flex {
+.sc-ExampleComponent--flex {
   display: flex;
   height: 100vh;
   flex-direction: column;
   justify-content: center;
-}
-
-.sc-example-component-border {
-  border: 1px solid #cdcdcd;
 }
