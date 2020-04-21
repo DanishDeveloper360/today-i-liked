@@ -7,16 +7,30 @@
     "commonjs": true,
     "jest": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "settings": {
+    "react": {
+      "version": "16.11.0"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react",
+    "plugin:jsx-a11y/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react", "jsx-a11y"],
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }]
   }

@@ -1,4 +1,4 @@
-# Scopus Micro UI Template - Vanilla
+# Scopus Micro UI Template - React
 
 ## Features
 

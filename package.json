@@ -26,17 +26,21 @@
     "babel-loader": "8.0.6",
     "core-js": "^3.6.4",
     "css-loader": "^3.2.0",
-    "electron": "^8.2.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-loader": "^3.0.3",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "file-loader": "^4.2.0",
     "html-loader": "^1.1.0",
     "html-loader-jest": "^0.2.1",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.3",
     "jest": "^25.2.7",
+    "jest-css-modules": "^2.1.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.0.9",
     "prettier": "^2.0.2",
@@ -48,7 +52,11 @@
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -59,15 +67,16 @@
       "npm run lint -- --fix"
     ]
   },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom-sixteen",
+    "setupFilesAfterEnv": [
+      "<rootDir>src/test/js/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
+    }
+  },
   "scopus-cli": {
     "template": ""
-  },
-  "jest": {
-    "runner": "@jest-runner/electron",
-    "testEnvironment": "@jest-runner/electron/environment",
-    "transform": {
-      "\\.js$": "babel-jest",
-      "\\.html$": "html-loader-jest"
-    }
   }
 }
