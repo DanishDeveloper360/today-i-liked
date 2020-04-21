@@ -1,150 +1,91 @@
-import 'components/dist/scopus-components';
-import 'stylesheet/dist/scopus-stylesheet';
-import ExampleComponentTemplate from './ExampleComponent.html';
+import React, { useEffect, useRef } from 'react';
+function ExampleComponent() {
+  const autocompleteRef = useRef();
 
-export default class ScopusExampleComponent extends HTMLElement {
-  constructor() {
-    super();
+  let { firstName } = window.scopus.platform.user.identification.getIdentity();
 
-    this._description = '';
-    this._icons = [];
-    this._countries = [];
-    this._config = {};
+  const countries = [
+    { id: 1, label: 'Afghanistan' },
+    { id: 2, label: 'Albania' },
+    { id: 3, label: 'Algeria' },
+    { id: 4, label: 'Angola' },
+    { id: 5, label: 'Armenia' },
+    { id: 6, label: 'Argentina' },
+    { id: 7, label: 'Congo' },
+    { id: 8, label: 'Croatia' },
+    { id: 9, label: 'France' },
+    { id: 10, label: 'Netherlands' },
+  ];
 
-    this._initialized = false;
-  }
+  const ICONS = [
+    'apple',
+    '3d-radiology',
+    'cooking-tools',
+    'couple-of-people',
+    'delivery-van',
+    'descend',
+  ];
 
-  connectedCallback() {
-    this.innerHTML = ExampleComponentTemplate;
+  useEffect(() => {
+    autocompleteRef.current.onExactSearch = (query) => {
+      alert(`Exact search done with query: ${query}`);
+    };
+    autocompleteRef.current.onUserTyping = (query) => {
+      autocompleteRef.current.suggestions = countries.filter(
+        (country) => country.label.indexOf(query) !== -1
+      );
+    };
+    autocompleteRef.current.onSuggestionSelect = (suggestion) => {
+      alert(`Suggestion ${suggestion.label} selected`);
+    };
+    autocompleteRef.current.config = {
+      queryTresholdLength: 2,
+      debounceTimeout: 500,
+      placeholder: 'Filter a country',
+      showClearIcon: true,
+      showSearchIcon: true,
+      small: true,
+    };
+  }, []);
 
-    // templates
-    this.$iconButtonTemplate = this.querySelector(
-      '#sc-ExampleComponent--iconButton'
-    );
-
-    // elements
-    this.$description = this.querySelector('#sc-ExampleComponent--title');
-    this.$iconBar = this.querySelector('#sc-ExampleComponent--iconBar');
-    this.$autocomplete = this.querySelector(
-      '#sc-ExampleComponent--autocomplete'
-    );
-
-    // ready to render
-    this._initialized = true;
-
-    // render methods
-    this._renderDescription();
-    this._renderIcons();
-    this._setupAutocomplete();
-  }
-
-  static get observedAttributes() {
-    return ['description', 'icons', 'countries', 'config'];
-  }
-
-  attributeChangedCallback(attributeName, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      switch (attributeName) {
-        case 'description':
-          this._description = newValue;
-          this._renderDescription();
-          break;
-        case 'icons':
-          this._icons = JSON.parse(newValue);
-          this._renderIcons();
-          break;
-        case 'countries':
-          this._countries = JSON.parse(newValue);
-          this._setupAutocomplete();
-          break;
-        case 'config':
-          this._config = JSON.parse(newValue);
-          this._setupAutocomplete();
-          break;
-      }
-    }
-  }
-
-  disconnectedCallback() {
-    this.$iconElements.forEach((icon) =>
-      icon.removeEventListener('click', this._iconOnClick)
-    );
-  }
-
-  // Title Functionality
-  _renderDescription() {
-    if (this._initialized) this.$description.innerHTML = this._description;
-  }
-
-  // // Icon Functionality
-  _renderIcons() {
-    if (this._initialized) {
-      this.$iconElements = this._icons.map((icon) => {
-        const $iconElement = document.importNode(
-          this.$iconButtonTemplate.content,
-          true
-        );
-
-        const $iconSVG = $iconElement.querySelector('sc-icon');
-        $iconSVG.setAttribute('icon-name', icon);
-        $iconSVG.addEventListener('click', this._iconOnClick);
-
-        this.$iconBar.appendChild($iconElement);
-        return $iconElement;
-      });
-    }
-  }
-
-  _iconOnClick(event) {
-    event.preventDefault();
-    alert(`clicked ${this.getAttribute('icon-name')}`);
-  }
-
-  // // Autocomplete Functionality
-  _setupAutocomplete() {
-    if (this._initialized) {
-      // Example of how to attach functions with an element selector
-      this.$autocomplete.onExactSearch = (query) => {
-        alert(`Exact search done with query: ${query}`);
-      };
-      this.$autocomplete.onUserTyping = (query) => {
-        this.$autocomplete.suggestions = this._countries.filter((country) =>
-          country.label.includes(query)
-        );
-      };
-      this.$autocomplete.onSuggestionSelect = (suggestion) => {
-        alert(`Suggestion ${suggestion.label} selected`);
-      };
-
-      this.$autocomplete.config = this._config;
-    }
-  }
-
-  get description() {
-    return this._description;
-  }
-  set description(value) {
-    this.setAttribute('description', value);
-  }
-
-  get icons() {
-    return this._icons;
-  }
-  set icons(value) {
-    this.setAttribute('icons', JSON.stringify(value));
-  }
-
-  get countries() {
-    return this._countries;
-  }
-  set countries(value) {
-    this.setAttribute('countries', JSON.stringify(value));
-  }
-
-  get config() {
-    return this._config;
-  }
-  set config(value) {
-    this.setAttribute('config', JSON.stringify(value));
-  }
+  return (
+    <div id="ScopusExampleComponent">
+      <div className="container sc-ExampleComponent--flex">
+        <section className="row">
+          <div className="col-24">
+            <h1>Scopus ExampleComponent Example</h1>
+            <p>Hello, {firstName}! Welcome to Scopus.</p>
+            <p className="text-meta--small">
+              This is a full column based on a 24 column grid layout.
+            </p>
+            <sc-autocomplete
+              ref={autocompleteRef}
+              id="autocomplete-example"
+            ></sc-autocomplete>
+          </div>
+        </section>
+        <section className="margin-size-24-t">
+          <div className="row">
+            <h2 className="col">Icons</h2>
+          </div>
+          <div className="row">
+            {ICONS.map((icon) => (
+              <div className="col-12 col-md-4" key={icon}>
+                <div className="box">
+                  <sc-icon
+                    icon-name={icon}
+                    onClick={() => alert(`clicked ${icon}`)}
+                  ></sc-icon>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 }
+
+ExampleComponent.propTypes = {};
+
+export default ExampleComponent;

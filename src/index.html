@@ -41,42 +41,13 @@
   <body>
     <div id="platformAlertArea" aria-live="polite" aria-atomic="true"></div>
     <sc-example-component
-      description="Scopus ExampleComponent Example"
+      label="ExampleComponentLabel"
+      value="ExampleComponentValue"
+      list='[{"listValueA": "value a-1", "listValueB": "value b-1"}]'
     ></sc-example-component>
     <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        const ExampleComponent = document.querySelector("sc-example-component");
-
-        ExampleComponent.icons = [
-          "apple",
-          "3d-radiology",
-          "cooking-tools",
-          "couple-of-people",
-          "delivery-van",
-          "descend",
-        ];
-
-        ExampleComponent.countries = [
-          { id: 1, label: "Afghanistan" },
-          { id: 2, label: "Albania" },
-          { id: 3, label: "Algeria" },
-          { id: 4, label: "Angola" },
-          { id: 5, label: "Armenia" },
-          { id: 6, label: "Argentina" },
-          { id: 7, label: "Congo" },
-          { id: 8, label: "Croatia" },
-          { id: 9, label: "France" },
-          { id: 10, label: "Netherlands" },
-        ];
-
-        ExampleComponent.config = {
-          queryTresholdLength: 2,
-          debounceTimeout: 500,
-          placeholder: "Filter a country",
-          showClearIcon: true,
-          showSearchIcon: true,
-          small: true,
-        };
+      customElements.whenDefined("sc-example-component").then(() => {
+        document.querySelector("sc-example-component").onChange = () => {};
       });
     </script>
   </body>
