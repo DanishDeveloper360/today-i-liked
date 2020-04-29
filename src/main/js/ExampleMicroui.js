@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-function ExampleComponent() {
+function ExampleMicroui() {
   const autocompleteRef = useRef();
 
   let { firstName } = window.scopus.platform.user.identification.getIdentity();
@@ -49,11 +49,11 @@ function ExampleComponent() {
   }, []);
 
   return (
-    <div id="ScopusExampleComponent">
-      <div className="container sc-ExampleComponent--flex">
+    <div id="ScopusExampleMicroui">
+      <div className="container sc-ExampleMicroui--flex">
         <section className="row">
           <div className="col-24">
-            <h1>Scopus ExampleComponent Example</h1>
+            <h1>Scopus ExampleMicroui Example</h1>
             <p>Hello, {firstName}! Welcome to Scopus.</p>
             <p className="text-meta--small">
               This is a full column based on a 24 column grid layout.
@@ -86,6 +86,6 @@ function ExampleComponent() {
   );
 }
 
-ExampleComponent.propTypes = {};
+ExampleMicroui.propTypes = {};
 
-export default ExampleComponent;
+export default ExampleMicroui;
