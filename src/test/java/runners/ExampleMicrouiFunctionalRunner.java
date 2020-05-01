@@ -8,6 +8,6 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "src/test/features", plugin = {
-			"json: cucumber_output/cucumber.json" }, glue = "src/test/java/__groupId__/step_definitions", tags = { "@ExampleComponentPage", "@functional" })
-public class ExampleComponentFunctionalRunner extends AbstractTestNGCucumberTests {
+			"json: cucumber_output/cucumber.json" }, glue = "src/test/java/__groupId__/step_definitions", tags = { "@ExampleMicrouiPage", "@functional" })
+public class ExampleMicrouiFunctionalRunner extends AbstractTestNGCucumberTests {
 }

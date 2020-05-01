@@ -1,8 +1,8 @@
-Feature: ExampleComponent
+Feature: ExampleMicroui
 
     Verify <functional use case>.
 
-	@ExampleComponentPage @functional
+	@ExampleMicrouiPage @functional
     Scenario: <test case>
         Given <setup step>
         When <action step>
@@ -11,7 +11,7 @@ Feature: ExampleComponent
 
     Verify <integration use case>.
 
-	@ExampleComponentPage @integration
+	@ExampleMicrouiPage @integration
     Scenario: <test case>
         Given <setup step>
         When <action step>
