@@ -53,7 +53,7 @@
 ></micro-ui>
 ```
 
-The definitions of the attributes are as follows:
+- The definitions of the attributes are as follows:
 
 | Attribute            |                                                                Definition |
 | -------------------- | ------------------------------------------------------------------------: |
