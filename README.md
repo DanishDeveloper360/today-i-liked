@@ -22,7 +22,7 @@
 
 ### Install
 
-- Run `npm install` then `npm start` to run the code
+- Run `npm install`
 
 ### Scripts
 
@@ -32,6 +32,36 @@
 - `build`: start a production build with [webpack](https://webpack.js.org/)
 - `analyze`: run the [source-map-analyzer](https://github.com/danvk/source-map-explorer#readme) and for an interactive guide of your apps' package dependencies
 - `lint`: run [eslint](https://eslint.org/), use the `- --fix` flag to auto-fix the linting issues. This runs automatically before [every commit](https://github.com/typicode/husky#readme).
+
+### Developing
+
+#### In Isolation
+
+- Run `npm start` and the wrapper inside `index.html` will be hosted at `http://localhost:9000`
+
+#### In Scopus Web
+
+- Follow the instructions above to get your micro-ui development environment running in isolation.
+- Start running Scopus-Web locally (Citation Needed)
+- Include the following code where you'd like your micro-ui to render. This should be somewhere in Scopus-Web.
+
+```html
+<micro-ui
+  override-url="http://localhost:9000"
+  component-id="sc-example-microui"
+  description="Scopus ExampleMicroui Example"
+></micro-ui>
+```
+
+The definitions of the attributes are as follows:
+
+| Attribute            |                                                                Definition |
+| -------------------- | ------------------------------------------------------------------------: |
+| override-url         |                                         should be `http://localhost:9000` |
+| component-id         | tag name for your web component defined by `window.customElements.define` |
+| description (etc...) |                 any attributes that are passed down to your web component |
+
+- After the micro-ui has been approved and deployed, remove `override-url` to start rendering the hosted build.
 
 ## Contribute
 
