@@ -19,6 +19,7 @@ module.exports = merge(baseConfig, {
     contentBase: './dist',
     compress: true,
     port: 9000,
+    stats: 'minimal',
   },
   devtool: 'inline-source-map',
   output: {

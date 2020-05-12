@@ -42,7 +42,7 @@
 #### In Scopus Web
 
 - Follow the instructions above to get your micro-ui development environment running in isolation.
-- Start running Scopus-Web locally (Citation Needed)
+- Start running Scopus-Web locally [Setup Instructions](https://confluence.cbsels.com/display/SCOPUS/Scopus+Web+Local+Setup?preview=/38973729/43714980/Scopus%20Developer%20Environment%20Setup.docx)
 - Include the following code where you'd like your micro-ui to render. This should be somewhere in Scopus-Web.
 
 ```html
