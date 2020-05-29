@@ -2,7 +2,7 @@
   "name": "microui-project-template",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/example-microui.bundle.js",
+  "main": "dist/example-microui.js",
   "files": [
     "dist/**"
   ],
