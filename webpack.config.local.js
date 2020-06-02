@@ -6,7 +6,12 @@ const path = require('path');
 
 process.env.BROWSERSLIST_ENV = process.env.BABEL_ENV = 'development';
 
+const pathTo = (fileName) => {
+  return path.join(__dirname, fileName);
+};
+
 module.exports = merge(baseConfig, {
+  entry: [pathTo('src/main/js/local.js'), pathTo('src/main/js/index.js')],
   mode: 'development',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
