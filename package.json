@@ -14,7 +14,8 @@
     "test:coverage": "npm test -- --coverage",
     "build": "webpack --config webpack.config.prod.js",
     "analyze": "npm run build && source-map-explorer 'dist/**/*.js'",
-    "lint": "eslint . --ignore-path .gitignore"
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "npm run-script lint -- --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
