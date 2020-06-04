@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@scopus/components';
-import '@scopus/stylesheet';
 
 import ScopusExampleMicroui from './ExampleMicroui';
 import './ExampleMicroui.css';
