@@ -14,7 +14,8 @@
     "test:coverage": "npm test -- --coverage",
     "build": "webpack --config webpack.config.prod.js",
     "analyze": "npm run build && source-map-explorer 'dist/**/*.js'",
-    "lint": "eslint . --ignore-path .gitignore"
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:fix": "npm run-script lint -- --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -23,8 +24,8 @@
     "@babel/preset-env": "7.7.1",
     "@babel/preset-react": "^7.9.4",
     "@babel/runtime": "^7.9.2",
-    "@scopus/components": "^1.0.3",
-    "@scopus/stylesheet": "^1.0.3",
+    "@scopus/components": "^1.0.4-0",
+    "@scopus/stylesheet": "^1.0.4-0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "8.0.6",
     "core-js": "^3.6.4",
