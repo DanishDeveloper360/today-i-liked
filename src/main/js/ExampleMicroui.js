@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef } from 'react';
 function ExampleMicroui() {
   const autocompleteRef = useRef();
-  const config = useMemo(() =>
-    window.scopus.platform.configuration.getComponentConfiguration(
-      'example-microui'
-    )
-  );
+  // const config = useMemo(() =>
+  //   window.scopus.platform.configuration.getComponentConfiguration(
+  //     'example-microui'
+  //   )
+  // );
+  const config = {};
 
   let { firstName } = window.scopus.platform.user.identification.getIdentity();
 
