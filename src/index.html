@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="standalone-micro-ui">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Testing Test HTML</title>
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://scopus-npm-test.s3.amazonaws.com/public-resources/deployed/pbj-scopus-monolith/pbj-scopus-monolith.js"></script>
 
     <script type="application/javascript">
+      // Configuration mock, to avoid PBJ trying to do a http request to scopus.
+      // When the micro-ui is being used inside scopus, this is not necessary.
+      sessionStorage.setItem('example-microui', `{
+        "FOO_ENABLED": true,
+        "BAR_ENABLED": false
+      }`);
+
       var ScopusUser = {
         webUserId: "Test=Id",
         firstName: "Test User",
@@ -34,6 +42,9 @@
       var PlatformData = {
         sessionId: "4CEB25FCDB6D4FF59DC09FA76D2A5047.wsnAw8kcdt7IPYLO0V48gA",
         pageId: "",
+      };
+      var smapiVars = {
+        STYLEGUIDE_BUNDLE_BASE_URL: 'https://components.nonprod.scopus.com/nonprod'
       };
     </script>
   </head>

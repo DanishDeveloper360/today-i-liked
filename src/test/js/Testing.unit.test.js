@@ -9,6 +9,14 @@ describe('Testing', () => {
   beforeEach(async () => {
     global.scopus = {
       platform: {
+        configuration: {
+          getComponentConfiguration() {
+            return {
+              FOO_ENABLED: true,
+              BAR_ENABLED: false,
+            };
+          },
+        },
         user: {
           identification: {
             getIdentity: jest.fn(() => ({

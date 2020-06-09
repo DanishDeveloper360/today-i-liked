@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 function Testing() {
   const autocompleteRef = useRef();
+  // const config = useMemo(() =>
+  //   window.scopus.platform.configuration.getComponentConfiguration(
+  //     'example-microui'
+  //   )
+  // );
+  const config = {};
 
   let { firstName } = window.scopus.platform.user.identification.getIdentity();
 
@@ -57,6 +63,16 @@ function Testing() {
             <p>Hello, {firstName}! Welcome to Scopus.</p>
             <p className="text-meta--small">
               This is a full column based on a 24 column grid layout.
+            </p>
+            <p className="text-meta">
+              Feature &quot;Foo&quot; is{' '}
+              {config.FOO_ENABLED ? 'enabled ✅' : 'disabled 🚫'} in
+              configuration.
+            </p>
+            <p className="text-meta">
+              Feature &quot;Bar&quot; is{' '}
+              {config.BAR_ENABLED ? 'enabled ✅' : 'disabled 🚫'} in
+              configuration.
             </p>
             <sc-autocomplete
               ref={autocompleteRef}

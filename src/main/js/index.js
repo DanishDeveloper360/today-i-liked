@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@scopus/components';
-import '@scopus/stylesheet';
 
 import ScopusTesting from './Testing';
 import './Testing.css';

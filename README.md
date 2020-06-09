@@ -64,6 +64,18 @@
 
 - After the micro-ui has been approved and deployed, remove `override-url` to start rendering the hosted build.
 
+### Configuration
+
+Use the file `src/main/resources/{component-id}-env-vars.json` to define properties that can be retrieved with PBJ, by calling:
+
+```js
+const config = scopus.platform.configuration.getComponentConfiguration(`${component-id}`);
+```
+
+The configuration file is stored in a s3 bucket, and it's part of the [component registration process](https://confluence.cbsels.com/display/SCOPUS/Component+Registration+Process+Scopus+Web) to upload it.
+
+When running [in isolation](#In-Isolation), while PBJ doesn't support pointing to development scopus, you have to manually set a configuration in `sessionStorage` as done in [index.html](src/index.html).
+
 ## Contribute
 
 - To create a re-usable contribution that other developers can benefit from, clone this repository and create a branch off the template you'd like to modify. For framework specific changes, use the `template-react` as a starting point.
