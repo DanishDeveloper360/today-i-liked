@@ -16,7 +16,8 @@
     "analyze": "npm run build && source-map-explorer 'dist/**/*.js'",
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "npm run-script lint -- --fix",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
