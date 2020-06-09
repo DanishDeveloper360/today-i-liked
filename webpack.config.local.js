@@ -24,6 +24,6 @@ module.exports = merge(baseConfig, {
   devtool: 'inline-source-map',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'sc-example-microui/sc-example-microui.js',
+    filename: 'sc-testing/sc-testing.js',
   },
 });

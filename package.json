@@ -1,8 +1,8 @@
 {
-  "name": "microui-project-template",
+  "name": "scopus-testing",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/example-microui.bundle.js",
+  "main": "dist/testing.bundle.js",
   "files": [
     "dist/**"
   ],
@@ -78,6 +78,6 @@
     }
   },
   "scopus-cli": {
-    "template": ""
+    "template": "template-react"
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import ExampleMicroui from '../../main/js/ExampleMicroui';
+import Testing from '../../main/js/Testing';
 
-describe('ExampleMicroui', () => {
-  let testExampleMicroui;
+describe('Testing', () => {
+  let testTesting;
 
   beforeEach(async () => {
     global.scopus = {
@@ -12,19 +12,19 @@ describe('ExampleMicroui', () => {
         user: {
           identification: {
             getIdentity: jest.fn(() => ({
-              firstName: 'example-microui-username',
+              firstName: 'testing-username',
             })),
           },
         },
       },
     };
     global.alert = jest.fn();
-    testExampleMicroui = mount(<ExampleMicroui />);
+    testTesting = mount(<Testing />);
   });
 
   describe('Snapshot test', () => {
     it('should render a snapshot', () => {
-      expect(testExampleMicroui.html()).toMatchSnapshot();
+      expect(testTesting.html()).toMatchSnapshot();
     });
   });
 });

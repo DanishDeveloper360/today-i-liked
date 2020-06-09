@@ -4,7 +4,7 @@ module.exports = {
   entry: path.join(__dirname, 'src/main/js/index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'example-microui.js',
+    filename: 'testing.js',
   },
   module: {
     rules: [

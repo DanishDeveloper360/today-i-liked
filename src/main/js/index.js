@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import '@scopus/components';
 import '@scopus/stylesheet';
 
-import ScopusExampleMicroui from './ExampleMicroui';
-import './ExampleMicroui.css';
+import ScopusTesting from './Testing';
+import './Testing.css';
 
 const WATCHED_ATRIBUTES = {};
 export default class WebComponent extends HTMLElement {
@@ -21,8 +21,8 @@ export default class WebComponent extends HTMLElement {
   }
 
   renderWebComponent() {
-    ReactDOM.render(<ScopusExampleMicroui />, this);
+    ReactDOM.render(<ScopusTesting />, this);
   }
 }
 
-window.customElements.define('sc-example-microui', WebComponent);
+window.customElements.define('sc-testing', WebComponent);

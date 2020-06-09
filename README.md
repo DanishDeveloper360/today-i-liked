@@ -48,8 +48,8 @@
 ```html
 <micro-ui
   override-url="http://localhost:9000"
-  component-id="sc-example-microui"
-  description="Scopus ExampleMicroui Example"
+  component-id="sc-testing"
+  description="Scopus Testing Example"
 ></micro-ui>
 ```
 

@@ -9,10 +9,10 @@ import org.testng.Assert;
 
 import support.CommonFunctions;
 
-public class ExampleMicrouiPage {
+public class TestingPage {
 	private final WebDriver driver;
 	
-	public ExampleMicrouiPage(WebDriver driver) {
+	public TestingPage(WebDriver driver) {
 		this.driver = driver;
 	}
 

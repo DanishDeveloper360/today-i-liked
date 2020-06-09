@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ExampleMicroui Test HTML</title>
+    <title>Testing Test HTML</title>
 
     <script src="https://scopus-npm-test.s3.amazonaws.com/public-resources/deployed/pbj-scopus-monolith/pbj-scopus-monolith.js"></script>
 
@@ -40,14 +40,14 @@
 
   <body>
     <div id="platformAlertArea" aria-live="polite" aria-atomic="true"></div>
-    <sc-example-microui
-      label="ExampleMicrouiLabel"
-      value="ExampleMicrouiValue"
+    <sc-testing
+      label="TestingLabel"
+      value="TestingValue"
       list='[{"listValueA": "value a-1", "listValueB": "value b-1"}]'
-    ></sc-example-microui>
+    ></sc-testing>
     <script>
-      customElements.whenDefined("sc-example-microui").then(() => {
-        document.querySelector("sc-example-microui").onChange = () => {};
+      customElements.whenDefined("sc-testing").then(() => {
+        document.querySelector("sc-testing").onChange = () => {};
       });
     </script>
   </body>

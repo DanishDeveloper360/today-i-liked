@@ -16,7 +16,7 @@ import pages.Page;
 import support.CommonFunctions;
 import support.TestProperties;
 
-public class ExampleMicrouiTestSteps {
+public class TestingTestSteps {
 	private WebDriver driver = Browser.getBrowserInstance();
 	private Page page = new Page();
 
