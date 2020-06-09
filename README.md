@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Scopus Micro UI Template - React
 
 ## Features
@@ -68,3 +69,7 @@
 - To create a re-usable contribution that other developers can benefit from, clone this repository and create a branch off the template you'd like to modify. For framework specific changes, use the `template-react` as a starting point.
 - For general javascript changes, create a branch from `template-vanilla` and make it the target of your pull request when complete.
 - After the changes are approved and merged, all developers can update their micro UI's using `scopus update` functionality in the CLI.
+=======
+# today-i-liked
+Links/Repos I found interesting
+>>>>>>> 6e28f8e3b9179489cd05ac578374e1ea739f15af
