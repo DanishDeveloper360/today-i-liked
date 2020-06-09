@@ -78,6 +78,6 @@
     }
   },
   "scopus-cli": {
-    "template": "template-react"
+    "template": "template-react-test"
   }
 }
