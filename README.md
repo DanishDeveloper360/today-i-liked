@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Scopus Micro UI Template - React
 
 ## Features
@@ -70,6 +70,4 @@
 - For general javascript changes, create a branch from `template-vanilla` and make it the target of your pull request when complete.
 - After the changes are approved and merged, all developers can update their micro UI's using `scopus update` functionality in the CLI.
 =======
-# today-i-liked
-Links/Repos I found interesting
->>>>>>> 6e28f8e3b9179489cd05ac578374e1ea739f15af
+
